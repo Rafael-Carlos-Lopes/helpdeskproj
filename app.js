@@ -42,6 +42,10 @@ app.get("/", function(req, res){
 
 app.get("/inserir",function(req, res){res.render("inserir");});
 
+app.get("/abrirchamado", function(req, res){
+    res.render('abrirchamado');
+})
+
 app.get("/select/:id?",function(req, res){
     if(!req.params.id){
         sql.getConnection(function(err, connection){
@@ -88,6 +92,14 @@ app.post("/controllerUpdate",urlencodeParser,function(req,res){
             res.render('controllerUpdate');
     });     
 });
+
+function TestaBotao(){
+    // sql.getConnection(function(err, connection){
+    //     connection.query("UPDATE user SET age = 35 WHERE id = 2;");
+    // });
+    console.log("teste");
+}
+
 
 //Start server
 app.listen(port, function(req, res){
