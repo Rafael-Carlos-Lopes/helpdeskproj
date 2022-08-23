@@ -4,21 +4,30 @@ const mysql=require('mysql');
 const handlebars=require('express-handlebars');
 const app=express();
 const urlencodeParser=bodyParser.urlencoded({extended:false});
-// const sql=mysql.createConnection({
-//     host:'localhost',
-//     user:'root',
-//     password:'',
-//     port:3306
-// });
-// sql.query("use nodejs");
 
+//#region Config de Bases para conexao
+
+//Descomentar e comentar o de baixo se for usar base local
+// const sql=mysql.createPool({
+//     host:'localhost',
+//         user:'root',
+//         password:'',
+//         port:3306,
+//         database: "nodejs"
+// });
+
+//Descomentar e comentar o de cima se for usar base de produção
 const sql=mysql.createPool({
-    user: "b25d2e9de70ab5",
-    password: "e7dfe4ce",
-    host: "us-cdbr-east-06.cleardb.net",
-    database: "heroku_90ab69443ba2f73"
+    user: 'b80a2a577bda7b',
+    password: 'f6210a81',
+    host: 'us-cdbr-east-06.cleardb.net',
+    database: 'heroku_1f38baa8bb5cfae'
 });
+//#endregion
+
+//variável para garantir que vai acessar a porta corretamente no heroku
 let port=process.env.PORT || 3000;
+
 // Template engine
 app.engine('handlebars',handlebars.engine({defaultLayout:'main'}));
 app.set('view engine','handlebars');
@@ -28,17 +37,10 @@ app.use('/css', express.static('css'));
 app.use('/js', express.static('js'));
 app.use('/img', express.static('img'));
 
-//Routes and Templates
+//#region Rotas and Templates
 app.get("/", function(req, res){
-    // res.send("Teste inicial");
-    // res.sendFile(__dirname+"/index.html");
-    // console.log(req.params.id);
     res.render('index');
 });
-
-//maneira de acessar arquivos pelo sistema de rotas
-// app.get("/javascript", function(req, res){res.sendFile(__dirname+'/js/javascript.js');});
-// app.get("/style", function(req, res){res.sendFile(__dirname+'/css/style.css');});
 
 app.get("/inserir",function(req, res){res.render("inserir");});
 
@@ -49,7 +51,7 @@ app.get("/abrirchamado", function(req, res){
 app.get("/select/:id?",function(req, res){
     if(!req.params.id){
         sql.getConnection(function(err, connection){
-            connection.query("select * from user order by id asc", function(err, results, fields){
+            connection.query("select * from CHAMADOS order by id asc", function(err, results, fields){
                 res.render('select', {data:results});
             });   
         });    
@@ -57,7 +59,7 @@ app.get("/select/:id?",function(req, res){
 
     else{
         sql.getConnection(function(err, connection){
-            connection.query("select * from user where id = ?",[req.params.id], function(err, results, fields){
+            connection.query("select * from CHAMADOS where id = ?",[req.params.id], function(err, results, fields){
                 res.render('select', {data:results});
             });  
         });    
@@ -92,16 +94,9 @@ app.post("/controllerUpdate",urlencodeParser,function(req,res){
             res.render('controllerUpdate');
     });     
 });
+//#endregion
 
-function TestaBotao(){
-    // sql.getConnection(function(err, connection){
-    //     connection.query("UPDATE user SET age = 35 WHERE id = 2;");
-    // });
-    console.log("teste");
-}
-
-
-//Start server
+//Iniciar servidor
 app.listen(port, function(req, res){
-    console.log('servidor está rodando');
+    console.log('Servidor Iniciado');
 });

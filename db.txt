@@ -1,4 +1,4 @@
-user: b25d2e9de70ab5
-password: e7dfe4ce
+user: b80a2a577bda7b
+password: f6210a81
 host: us-cdbr-east-06.cleardb.net
-database: heroku_90ab69443ba2f73
+database: heroku_1f38baa8bb5cfae
