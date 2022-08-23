@@ -68,8 +68,21 @@ app.get("/select/:id?",function(req, res){
 
 app.post("/controllerForm",urlencodeParser,function(req,res){
     sql.getConnection(function(err, connection){
-        connection.query("insert into user values (?,?,?)",[req.body.id,req.body.name,req.body.age]);
-            res.render('controllerForm',{name:req.body.name});
+        connection.query("select id from CHAMADOS order by id desc limit 0,1", function(err, results, fields){
+            
+            //Código para incrementar o id dos chamados de 1 em 1;
+            let maiorId;
+
+            if(results[0] != null)
+                maiorId = results[0].id;
+
+            else
+                maiorId = 0;
+
+            connection.query("insert into CHAMADOS (ID, TITULO, CATEGORIA, DESCRICAO) values (?,?,?,?)",[(maiorId + 1),req.body.titulo,req.body.categoria,req.body.descricao]);
+
+            res.render('controllerForm',{name:req.body.titulo});
+        });   
     });  
 });
 
