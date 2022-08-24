@@ -11,3 +11,25 @@
         }
     }
 })(window,document);
+
+require("jsdom").env("", function(err, window) {
+    if (err) {
+        console.error(err);
+        return;
+    }
+
+    $("#formAbrirChamado").on('submit', function(event){
+        event.preventDefault();
+        var Dados=$(this).serialize();
+    
+        $.ajax({
+            url: 'controllerForm.handlebars',
+            type:'post',
+            dataType:'html',
+            data: Dados,
+            success:function(Dados){
+                $('.resultado').show.html(Dados);
+            }
+        });
+    });
+});
