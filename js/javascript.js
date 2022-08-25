@@ -12,24 +12,24 @@
     }
 })(window,document);
 
-require("jsdom").env("", function(err, window) {
-    if (err) {
-        console.error(err);
-        return;
-    }
-
-    $("#formAbrirChamado").on('submit', function(event){
-        event.preventDefault();
+//Cria mensagem de criação de cadastro sucedido sem mudar a url na tela de criar chamado
+$(function () {
+    $("#formAbrirChamado").on("submit", function (event) {
         var Dados=$(this).serialize();
-    
-        $.ajax({
-            url: 'controllerForm.handlebars',
-            type:'post',
-            dataType:'html',
-            data: Dados,
-            success:function(Dados){
-                $('.resultado').show.html(Dados);
-            }
-        });
-    });
-});
+        var titulo = this[0].value;
+        var categoria = this[1].value;
+        var descricao = this[2].value;
+        $.post("/controllerForm",{
+                titulo: String(titulo),
+                categoria: String(categoria),
+                descricao: String(descricao),
+                success:function(){
+                    $('.resultado').show();
+                }
+             },
+             function (data, status) {
+                console.log(data);
+             });
+             event.preventDefault();
+        });   
+ });
