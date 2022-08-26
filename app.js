@@ -4,6 +4,20 @@ const mysql=require('mysql');
 const handlebars=require('express-handlebars');
 const app=express();
 const urlencodeParser=bodyParser.urlencoded({extended:false});
+const sessions = require('express-session');
+
+//#region comnfiguracao de sessao
+//um segundo mult. por 60 para virar minuto, depois hora
+const umaHora = 1000 * 60 * 60;
+app.use(sessions({
+    secret: "thisismysecretkeyfhrgfgrfrty84fwir767",
+    saveUninitialized:true,
+    cookie: { maxAge: umaHora },
+    resave: false 
+}));
+
+app.use(bodyParser.urlencoded({extended: true}));
+//#endregion
 
 //#region Config de Bases para conexao
 
@@ -39,36 +53,67 @@ app.use('/img', express.static('img'));
 
 //#region Rotas and Templates
 app.get("/", function(req, res){
-    res.render('index');
+    if(req.session.matricula)
+        res.render('home');
+    else
+        res.render('login');
+});
+
+app.post("/",(req,res) => {
+    sql.getConnection(function(err, connection){
+        connection.query("select * from usuarios where matricula = ? and senha = ?",[req.body.matricula, req.body.senha], function(err, results, fields){
+            if(results[0] != null){
+                req.session.matricula = results[0].matricula;
+                console.log(req.session.matricula);
+                res.render('home');
+            }
+            else
+                res.render('login', {textoErro: "Usuário ou senha inválido(s)."});
+        });   
+    });    
+});
+
+app.get('/logout',(req,res) => {
+    req.session.destroy();
+    res.redirect('/');
 });
 
 app.get("/inserir",function(req, res){res.render("inserir");});
 
 app.get("/abrirchamado", function(req, res){
-    res.render('abrirchamado');
-})
+    if(req.session.matricula)
+        res.render('abrirchamado');
+    else
+        res.redirect('/');
+});
 
 app.get("/select/:id?",function(req, res){
-    if(!req.params.id){
-        sql.getConnection(function(err, connection){
-            connection.query("select * from CHAMADOS order by id asc", function(err, results, fields){
-                res.render('select', {data:results});
-            });   
-        });    
+    if(req.session.matricula){
+        if(!req.params.id){
+            sql.getConnection(function(err, connection){
+                connection.query("select * from chamados order by id asc", function(err, results, fields){
+                    res.render('select', {data:results});
+                });   
+            });    
+        }
+
+        else{
+            sql.getConnection(function(err, connection){
+                connection.query("select * from chamados where id = ?",[req.params.id], function(err, results, fields){
+                    res.render('select', {data:results});
+                });  
+            });    
+        }
     }
 
     else{
-        sql.getConnection(function(err, connection){
-            connection.query("select * from CHAMADOS where id = ?",[req.params.id], function(err, results, fields){
-                res.render('select', {data:results});
-            });  
-        });    
+        res.redirect('/');
     }
 });
 
 app.post("/controllerForm",urlencodeParser,function(req,res){
     sql.getConnection(function(err, connection){
-        connection.query("select id from CHAMADOS order by id desc limit 0,1", function(err, results, fields){
+        connection.query("select id from chamados order by id desc limit 0,1", function(err, results, fields){
             
             //Código para incrementar o id dos chamados de 1 em 1;
             let maiorId;
@@ -79,7 +124,7 @@ app.post("/controllerForm",urlencodeParser,function(req,res){
             else
                 maiorId = 0;
 
-            connection.query("insert into CHAMADOS (ID, TITULO, CATEGORIA, DESCRICAO) values (?,?,?,?)",[(maiorId + 1),req.body.titulo,req.body.categoria,req.body.descricao]);
+            connection.query("insert into chamados (id, titulo, categoria, descricao) values (?,?,?,?)",[(maiorId + 1),req.body.titulo,req.body.categoria,req.body.descricao]);
 
             res.render('controllerForm',{name:req.body.titulo});
         });   
