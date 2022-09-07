@@ -84,9 +84,9 @@ app.get('/logout',(req,res) => {
 });
 
 //tela de abrir novo chamado
-app.get("/abrirChamado", function(req, res){
+app.get("/chamados", function(req, res){
     if(req.session.matricula)
-        res.render('abrirChamado');
+        res.render('chamados');
     else
         res.redirect('/');
 });
