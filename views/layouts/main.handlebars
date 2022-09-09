@@ -15,11 +15,15 @@
         <img src="img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
         App Help Desk
       </a>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link botao-sair" href="logout">SAIR</a>
-        </li>
-      </ul>
+      <div class="dropdown botao-sair">
+            <button class="btn btn-secondary dropdown-toggle right" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="../../img/gear-fill.svg" width="25" height="25" alt=""> Opções
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="logout">SAIR</a>
+            </div>
+        </div>
 </nav>
 
     {{{body}}}
