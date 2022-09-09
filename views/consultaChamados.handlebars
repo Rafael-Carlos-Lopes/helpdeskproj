@@ -9,12 +9,12 @@
 
                 <div class="card-body">
                     {{#data}}
-                    <div class="card mb-3 bg-light">
+                    <div id="card-chamado" class="card mb-3 bg-light detalhes-chamado" onclick=location.href='/'>
                         <div class="card-body">
                             <h5 class="card-title">{{titulo}}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{categoria}}</h6>
                             <p class="card-text">{{descricao}}</p>
-
+                            <p class="card-text">Status: {{status}}</p>
                         </div>
                     </div>
                     {{/data}}
