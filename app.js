@@ -5,6 +5,7 @@ const handlebars=require('express-handlebars');
 const app=express();
 const urlencodeParser=bodyParser.urlencoded({extended:false});
 const sessions = require('express-session');
+const session = require('express-session');
 
 //#region comnfiguracao de sessao
 //um segundo mult. por 60 para virar minuto, depois hora
@@ -120,7 +121,7 @@ app.get("/consultaChamados/:id?",function(req, res){
 app.post("/controllerAbrirChamado",urlencodeParser,function(req,res){
     sql.getConnection(function(err, connection){
         connection.query("select id from chamados order by id desc limit 0,1", function(err, results, fields){
-            
+            var matriculaSolicitador = req.session.matricula;
             //Código para incrementar o id dos chamados de 1 em 1;
             let maiorId;
 
@@ -130,13 +131,14 @@ app.post("/controllerAbrirChamado",urlencodeParser,function(req,res){
             else
                 maiorId = 0;
 
-            connection.query("insert into chamados (id, titulo, categoria, descricao, status) values (?,?,?,?,?)",[(maiorId + 1),req.body.titulo,req.body.categoria,req.body.descricao, "Espera"]);
+            connection.query("insert into chamados (id, titulo, categoria, descricao, status, idSolicitador) values (?,?,?,?,?,?)",[(maiorId + 1),req.body.titulo,req.body.categoria,req.body.descricao,"Espera",req.session.matricula]);
 
             res.render('controllerAbrirChamado');
         });   
     });  
 });
 
+//Tela de criar usuário, somente acessada pelo administrador
 app.get("/criarUsuario", function(req, res){
     if(req.session.matricula){
         if(req.session.tipo == "administrador")
@@ -148,10 +150,10 @@ app.get("/criarUsuario", function(req, res){
         res.redirect('/');
 });
 
-//função para criar chamado novo
+//função para criar usuario novo
 app.post("/controllerCriarUsuario",urlencodeParser,function(req,res){
     sql.getConnection(function(err, connection){
-            connection.query("insert into usuarios (matricula, senha, tipo) values (?,?,?)",[req.body.matricula,req.body.matricula,"aluno"]);
+            connection.query("insert into usuarios (matricula, senha, tipo, nome, cpf, email, telefone) values (?,?,?,?,?,?,?)",[req.body.matricula,req.body.matricula,"aluno",req.body.nome,req.body.cpf,req.body.email,req.body.telefone]);
 
             res.render('controllerCriarUsuario');
     });  
