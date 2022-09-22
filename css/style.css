@@ -52,3 +52,28 @@ cursor: pointer;
     padding: 10px;
 }
 
+#sticky-sidebar {
+    width: 20%;
+    min-height: 100vh;
+    background: #7386D5;
+    color: #fff;
+}
+
+#sticky-sidebar .nav-link{
+    padding: 1.5rem 1rem;
+}
+
+.nav-topo{
+    position: fixed !important;
+    width: 100%;
+    z-index: 10000;
+    margin-top: -5em;
+}
+
+.conteudo-principal{
+    margin-top: 5em;
+}
+
+#main{
+    margin-left: 23%;
+}

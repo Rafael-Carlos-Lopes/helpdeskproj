@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>UniHelp</title>
     <link rel='stylesheet' href='/css/style.css'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="icon" href="../../img/favicon.ico">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src='/js/javascript.js'></script>
 </head>
 
 <body>
-<nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="/">
-        <img src="img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-        App Help Desk
-      </a>
-      <div class="dropdown botao-sair">
+
+    <nav class="navbar navbar-dark bg-white nav-topo">
+        <a class="navbar-brand" href="/">
+            <img src="img/logo.png" width="150" height="50" class="d-inline-block align-top" alt="">
+        </a>
+        <div class="dropdown botao-sair">
             <button class="btn btn-secondary dropdown-toggle right" type="button" id="dropdownMenuButton"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img src="../../img/gear-fill.svg" width="25" height="25" alt=""> Opções
@@ -25,12 +28,46 @@
                 <a class="dropdown-item" href="logout">SAIR</a>
             </div>
         </div>
-</nav>
+    </nav>
 
-    {{{body}}}
+    <div class="container-fluid conteudo-principal">
+        <div class="row">
+            <div class="col-3 px-1 position-fixed" id="sticky-sidebar">
+                <div class="nav flex-column flex-nowrap vh-100 overflow-auto text-white p-2">
+                    <a href="/" class="nav-link">
+                        <img src="img/HomeIcon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                        Home
+                    </a>
+                    <a href="chamados" class="nav-link">
+                        <img src="img/ChamadosIcon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                        Chamados
+                    </a>
+                    <a href="" class="nav-link">
+                        <img src="img/ConfigIcon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                        Configurações
+                    </a>
+                    <a href="logout" class="nav-link">
+                        <img src="img/LogoutIcon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                        Logout
+                    </a>
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" interity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-   
+                </div>
+            </div>
+
+
+            <div class="col-9 offset-3" id="main">
+                {{{body}}}
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        interity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
 </body>
+
 </html>
