@@ -7,6 +7,7 @@ const urlencodeParser=bodyParser.urlencoded({extended:false});
 const sessions = require('express-session');
 const session = require('express-session');
 
+
 //#region comnfiguracao de sessao
 //um segundo mult. por 60 para virar minuto, depois hora
 const umaHora = 1000 * 60 * 60;
@@ -38,8 +39,8 @@ const sql=mysql.createPool({
     host: 'us-cdbr-east-06.cleardb.net',
     database: 'heroku_1f38baa8bb5cfae'
 });
-//#endregion
 
+//#endregion
 //variável para garantir que vai acessar a porta corretamente no heroku
 let port=process.env.PORT || 3000;
 
@@ -79,10 +80,17 @@ app.post("/",(req,res) => {
 });
 
 //Deslogar
+//app.get('/logout',(req,res) => {
+//    req.session.destroy();
+//    res.redirect('/');
+//});
+
 app.get('/logout',(req,res) => {
     req.session.destroy();
-    res.redirect('/');
+    res.render('/', {textoLogout: "Deslogado com sucesso!"});
 });
+
+
 
 //tela de abrir novo chamado
 app.get("/chamados", function(req, res){

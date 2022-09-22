@@ -1,3 +1,12 @@
+function checker(){
+    var result = confirm('Deseja Encerrar a Sessão?');
+    if (result == false){
+        event.preventDefault();
+    }
+}
+
+
+
 (function readyJS(win, doc) {
     if (doc.querySelectorAll('.deletar')) {
         for (let i = 0; i < doc.querySelectorAll('.deletar').length; i++) {
@@ -60,3 +69,5 @@ $(function () {
         }
     }
 });
+
+
