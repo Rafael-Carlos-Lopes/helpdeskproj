@@ -18,17 +18,45 @@ $(function () {
         var titulo = this[0].value;
         var categoria = this[1].value;
         var descricao = this[2].value;
-        $.post("/controllerForm", {
+        $.post("/controllerAbrirChamado", {
             titulo: String(titulo),
             categoria: String(categoria),
             descricao: String(descricao),
             success: function () {
                 $('.resultado').show();
             }
-        },
-            function (data, status) {
-                console.log(data);
-            });
+        });
         event.preventDefault();
     });
+
+    $("#formCriarUsuario").on("submit", function (event) {
+        var matricula = this[0].value;
+        var nome = this[1].value;
+        var cpf = this[2].value;
+        var email = this[3].value;
+        var telefone = this[4].value;
+        $.post("/controllerCriarUsuario", {
+            matricula: String(matricula),
+            nome: String(nome),
+            cpf: String(cpf),
+            email: String(email),
+            telefone: String(telefone),
+            success: function () {
+                $('.resultado').show();
+            }
+        });
+        event.preventDefault();
+    });
+
+    var tipo = $('#tipo')[0];
+
+    if(tipo != undefined){
+        if(tipo.attributes[2].value != "administrador"){
+            $('#opcaoCriarUsuario').addClass('opcaoCriarUsuario');
+            $('#opcaoConsultarChamados').addClass('col-6');
+            $('#opcaoConsultarChamados').removeClass('col-4');
+            $('#opcaoAbrirChamado').addClass('col-6');
+            $('#opcaoAbrirChamado').removeClass('col-4');            
+        }
+    }
 });

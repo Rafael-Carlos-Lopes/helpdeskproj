@@ -5,6 +5,7 @@ const handlebars=require('express-handlebars');
 const app=express();
 const urlencodeParser=bodyParser.urlencoded({extended:false});
 const sessions = require('express-session');
+const session = require('express-session');
 
 //#region comnfiguracao de sessao
 //um segundo mult. por 60 para virar minuto, depois hora
@@ -52,20 +53,24 @@ app.use('/js', express.static('js'));
 app.use('/img', express.static('img'));
 
 //#region Rotas and Templates
+
+//Primeira tela
 app.get("/", function(req, res){
     if(req.session.matricula)
-        res.render('home');
+        res.render('home', {tipo:req.session.tipo});
     else
         res.render('login');
 });
 
+//Login com sucesso ou falha
 app.post("/",(req,res) => {
     sql.getConnection(function(err, connection){
         connection.query("select * from usuarios where matricula = ? and senha = ?",[req.body.matricula, req.body.senha], function(err, results, fields){
             if(results[0] != null){
                 req.session.matricula = results[0].matricula;
-                console.log(req.session.matricula);
-                res.render('home');
+                req.session.tipo = results[0].tipo;
+                console.log(req.session.tipo);
+                res.render('home', {tipo:req.session.tipo});
             }
             else
                 res.render('login', {textoErro: "Usuário ou senha inválido(s)."});
@@ -73,26 +78,27 @@ app.post("/",(req,res) => {
     });    
 });
 
+//Deslogar
 app.get('/logout',(req,res) => {
     req.session.destroy();
     res.redirect('/');
 });
 
-app.get("/inserir",function(req, res){res.render("inserir");});
-
-app.get("/abrirchamado", function(req, res){
+//tela de abrir novo chamado
+app.get("/chamados", function(req, res){
     if(req.session.matricula)
-        res.render('abrirchamado');
+        res.render('chamados');
     else
         res.redirect('/');
 });
 
-app.get("/select/:id?",function(req, res){
+//tela que retorna os chamados
+app.get("/consultaChamados/:id?",function(req, res){
     if(req.session.matricula){
         if(!req.params.id){
             sql.getConnection(function(err, connection){
                 connection.query("select * from chamados order by id asc", function(err, results, fields){
-                    res.render('select', {data:results});
+                    res.render('consultaChamados', {data:results});
                 });   
             });    
         }
@@ -100,7 +106,7 @@ app.get("/select/:id?",function(req, res){
         else{
             sql.getConnection(function(err, connection){
                 connection.query("select * from chamados where id = ?",[req.params.id], function(err, results, fields){
-                    res.render('select', {data:results});
+                    res.render('consultaChamados', {data:results});
                 });  
             });    
         }
@@ -111,10 +117,11 @@ app.get("/select/:id?",function(req, res){
     }
 });
 
-app.post("/controllerForm",urlencodeParser,function(req,res){
+//função para criar chamado novo
+app.post("/controllerAbrirChamado",urlencodeParser,function(req,res){
     sql.getConnection(function(err, connection){
         connection.query("select id from chamados order by id desc limit 0,1", function(err, results, fields){
-            
+            var matriculaSolicitador = req.session.matricula;
             //Código para incrementar o id dos chamados de 1 em 1;
             let maiorId;
 
@@ -124,13 +131,36 @@ app.post("/controllerForm",urlencodeParser,function(req,res){
             else
                 maiorId = 0;
 
-            connection.query("insert into chamados (id, titulo, categoria, descricao) values (?,?,?,?)",[(maiorId + 1),req.body.titulo,req.body.categoria,req.body.descricao]);
+            connection.query("insert into chamados (id, titulo, categoria, descricao, status, idSolicitador) values (?,?,?,?,?,?)",[(maiorId + 1),req.body.titulo,req.body.categoria,req.body.descricao,"Espera",req.session.matricula]);
 
-            res.render('controllerForm',{name:req.body.titulo});
+            res.render('controllerAbrirChamado');
         });   
     });  
 });
 
+//Tela de criar usuário, somente acessada pelo administrador
+app.get("/criarUsuario", function(req, res){
+    if(req.session.matricula){
+        if(req.session.tipo == "administrador")
+            res.render('criarUsuario');
+        else
+            res.redirect('/');
+    }
+    else
+        res.redirect('/');
+});
+
+//função para criar usuario novo
+app.post("/controllerCriarUsuario",urlencodeParser,function(req,res){
+    sql.getConnection(function(err, connection){
+            connection.query("insert into usuarios (matricula, senha, tipo, nome, cpf, email, telefone) values (?,?,?,?,?,?,?)",[req.body.matricula,req.body.matricula,"aluno",req.body.nome,req.body.cpf,req.body.email,req.body.telefone]);
+
+            res.render('controllerCriarUsuario');
+    });  
+});
+//#endregion
+
+//#region provavelmente deletar
 app.get('/deletar/:id',function(req,res){
     sql.getConnection(function(err, connection){
         connection.query("delete from user where id=?",[req.params.id]);
