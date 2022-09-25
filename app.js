@@ -81,7 +81,7 @@ app.post("/",(req,res) => {
 //Deslogar
 app.get('/logout',(req,res) => {
     req.session.destroy();
-    res.redirect('/');
+    res.render('login', {textoLogout: "Deslogado com sucesso!"});
 });
 
 //tela de abrir novo chamado
