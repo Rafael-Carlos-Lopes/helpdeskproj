@@ -52,11 +52,7 @@ $(function () {
 
     if(tipo != undefined){
         if(tipo.attributes[2].value != "administrador"){
-            $('#opcaoCriarUsuario').addClass('opcaoCriarUsuario');
-            $('#opcaoConsultarChamados').addClass('col-6');
-            $('#opcaoConsultarChamados').removeClass('col-4');
-            $('#opcaoAbrirChamado').addClass('col-6');
-            $('#opcaoAbrirChamado').removeClass('col-4');            
+            $('#opcaoCriarUsuario').addClass('opcaoCriarUsuario');         
         }
     }
 });
