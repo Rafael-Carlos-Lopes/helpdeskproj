@@ -25,7 +25,7 @@
                 <img src="../../img/gear-fill.svg" width="25" height="25" alt=""> Opções
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="logout">SAIR</a>
+                <a onclick="checker()" class="dropdown-item" href="logout">SAIR</a>
             </div>
         </div>
     </nav>
@@ -34,26 +34,57 @@
         <div class="row">
             <div class="col-3 px-1 position-fixed" id="sticky-sidebar">
                 <div class="nav flex-column flex-nowrap vh-100 overflow-auto text-white p-2">
-                    <a href="/" class="nav-link">
+                    <div class="row menu-lateral">
                         <img src="img/HomeIcon.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                        Home
-                    </a>
-                    <a href="chamados" class="nav-link">
+                        <a href="/">Home<a>
+                    </div>
+                    <div class="row menu-lateral">
                         <img src="img/ChamadosIcon.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                        Chamados
-                    </a>
-                    <a href="" class="nav-link">
+
+                        <li class="active" style="align-self: center;">
+                            <a href="#chamadosSubmenu" data-toggle="collapse" aria-expanded="false"
+                                class="dropdown-toggle">Chamados</a>
+                            <ul class="collapse list-unstyled" id="chamadosSubmenu">
+                                <li>
+                                    <a href="consultaChamados">Consultar</a>
+                                </li>
+                                <li>
+                                    <a href="chamados">Novo</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </div>
+
+                    <div class="row menu-lateral">
                         <img src="img/ConfigIcon.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                        Configurações
-                    </a>
-                    <a href="logout" class="nav-link">
+
+                        <li class="active" style="align-self: center;">
+                            <a href="#configSubmenu" data-toggle="collapse" aria-expanded="false"
+                                class="dropdown-toggle">Configurações</a>
+                            <ul class="collapse list-unstyled" id="configSubmenu">
+                                <li>
+                                    <a href="senha">Alterar Senha</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </div>
+
+                    <div class="row menu-lateral">
                         <img src="img/LogoutIcon.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                        Logout
-                    </a>
+
+                        <li class="active" style="align-self: center;">
+                            <a href="#logoutSubmenu" data-toggle="collapse" aria-expanded="false"
+                                class="dropdown-toggle">Logout</a>
+                            <ul class="collapse list-unstyled" id="logoutSubmenu">
+                                <li>
+                                    <a onclick="checker()" href="logout">Sair</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </div>
 
                 </div>
             </div>
-
 
             <div class="col-9 offset-3" id="main">
                 {{{body}}}

@@ -60,3 +60,10 @@ $(function () {
         }
     }
 });
+
+function checker(){
+    var result = confirm('Deseja Encerrar a Sessão?');
+    if (result == false){
+        event.preventDefault();
+    }
+}
