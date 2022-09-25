@@ -182,6 +182,14 @@ app.post("/controllerUpdate",urlencodeParser,function(req,res){
             res.render('controllerUpdate');
     });     
 });
+
+//tela de configurações
+app.get("/configuracoes", function(req, res){
+    if(req.session.matricula)
+        res.render('configuracoes');
+    else
+        res.redirect('/');
+});
 //#endregion
 
 //Iniciar servidor

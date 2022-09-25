@@ -20,12 +20,14 @@
             <img src="img/logo.png" width="150" height="50" class="d-inline-block align-top" alt="">
         </a>
         <div class="dropdown botao-sair">
-            <button class="btn btn-secondary dropdown-toggle right" type="button" id="dropdownMenuButton"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="../../img/gear-fill.svg" width="25" height="25" alt=""> Opções
+            <button class="btn btn-secondary dropdown-toggle right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Opções
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a onclick="checker()" class="dropdown-item" href="logout">SAIR</a>
+                <a class="btn btn-dark dropdown-item" href="/"><img src="../../img/house-fill.svg" width="20" height="20" align="top"> Home</a>
+                <a class="btn btn-dark dropdown-item" href="consultaChamados"><img src="../../img/headset.svg" width="20" height="20" align="top"> Chamados</a>
+                <a class="btn btn-dark dropdown-item" href="/"><img src="../../img/gear-fill.svg" width="20" height="20" align="top"> Configurações</a>
+                <a class="btn btn-dark dropdown-item" href="logout"><img src="../../img/x-octagon-fill.svg" width="20" height="20" align="top"> Logout</a>
             </div>
         </div>
     </nav>
@@ -51,6 +53,9 @@
                                 <li>
                                     <a href="chamados">Novo</a>
                                 </li>
+                                <li id="opcaoCriarUsuario">
+                                    <a href="criarUsuario">Criar Usuário</a>
+                                </li>
                             </ul>
                         </li>
                     </div>
@@ -63,7 +68,7 @@
                                 class="dropdown-toggle">Configurações</a>
                             <ul class="collapse list-unstyled" id="configSubmenu">
                                 <li>
-                                    <a href="senha">Alterar Senha</a>
+                                    <a href="configuracoes">Alterar Senha</a>
                                 </li>
                             </ul>
                         </li>
