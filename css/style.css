@@ -61,6 +61,12 @@ cursor: pointer;
 
 #sticky-sidebar .nav-link{
     padding: 1.5rem 1rem;
+    color:white;
+    line-height: 2;
+}
+
+#sticky-sidebar a{
+    color:white;
 }
 
 .nav-topo{
@@ -76,4 +82,14 @@ cursor: pointer;
 
 #main{
     margin-left: 23%;
+}
+
+.menu-lateral{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.menu-lateral img{
+    margin-right: 1em;
+    margin-left: 2em;
 }
