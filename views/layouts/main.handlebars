@@ -17,17 +17,17 @@
 
     <nav class="navbar navbar-dark bg-white nav-topo">
         <a class="navbar-brand" href="/">
-            <img src="img/logo.png" width="150" height="50" class="d-inline-block align-top" alt="">
+            <img src="/img/logo.png" width="150" height="50" class="d-inline-block align-top" alt="">
         </a>
         <div class="dropdown botao-sair">
             <button class="btn btn-secondary dropdown-toggle right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Opções
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="btn btn-dark dropdown-item" href="/"><img src="../../img/house-fill.svg" width="20" height="20" align="top"> Home</a>
-                <a class="btn btn-dark dropdown-item" href="consultaChamados"><img src="../../img/headset.svg" width="20" height="20" align="top"> Chamados</a>
-                <a class="btn btn-dark dropdown-item" href="/"><img src="../../img/gear-fill.svg" width="20" height="20" align="top"> Configurações</a>
-                <a class="btn btn-dark dropdown-item" href="logout"><img src="../../img/x-octagon-fill.svg" width="20" height="20" align="top"> Logout</a>
+                <a class="btn btn-dark dropdown-item" href="/"><img src="/img/house-fill.svg" width="20" height="20" align="top"> Home</a>
+                <a class="btn btn-dark dropdown-item" href="consultaChamados"><img src="/img/headset.svg" width="20" height="20" align="top"> Chamados</a>
+                <a class="btn btn-dark dropdown-item" href="/"><img src="/img/gear-fill.svg" width="20" height="20" align="top"> Configurações</a>
+                <a class="btn btn-dark dropdown-item" onclick="checker()" href="logout"><img src="/img/x-octagon-fill.svg" width="20" height="20" align="top"> Logout</a>
             </div>
         </div>
     </nav>
@@ -37,11 +37,11 @@
             <div class="col-3 px-1 position-fixed" id="sticky-sidebar">
                 <div class="nav flex-column flex-nowrap vh-100 overflow-auto text-white p-2">
                     <div class="row menu-lateral">
-                        <img src="img/HomeIcon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                        <img src="/img/HomeIcon.png" width="30" height="30" class="d-inline-block align-top" alt="">
                         <a href="/">Home<a>
                     </div>
                     <div class="row menu-lateral">
-                        <img src="img/ChamadosIcon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                        <img src="/img/ChamadosIcon.png" width="30" height="30" class="d-inline-block align-top" alt="">
 
                         <li class="active" style="align-self: center;">
                             <a href="#chamadosSubmenu" data-toggle="collapse" aria-expanded="false"
@@ -61,7 +61,7 @@
                     </div>
 
                     <div class="row menu-lateral">
-                        <img src="img/ConfigIcon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                        <img src="/img/ConfigIcon.png" width="30" height="30" class="d-inline-block align-top" alt="">
 
                         <li class="active" style="align-self: center;">
                             <a href="#configSubmenu" data-toggle="collapse" aria-expanded="false"
@@ -75,7 +75,7 @@
                     </div>
 
                     <div class="row menu-lateral">
-                        <img src="img/LogoutIcon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                        <img src="/img/LogoutIcon.png" width="30" height="30" class="d-inline-block align-top" alt="">
 
                         <li class="active" style="align-self: center;">
                             <a href="#logoutSubmenu" data-toggle="collapse" aria-expanded="false"

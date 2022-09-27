@@ -1,31 +1,26 @@
 <div class="container">
-    <div class="row">
 
-        <div class="card-consultar-chamado">
-            <div class="card">
-                <div class="card-header">
-                    Consulta de chamado
-                </div>
-
-                <div class="card-body">
-                    {{#data}}
-                    <div id="card-chamado" class="card mb-3 bg-light detalhes-chamado" onclick=location.href='/'>
-                        <div class="card-body">
-                            <h5 class="card-title">{{titulo}}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{categoria}}</h6>
-                            <p class="card-text">{{descricao}}</p>
-                            <p class="card-text">Status: {{status}}</p>
-                        </div>
-                    </div>
-                    {{/data}}
-
-                    <div class="row mt-5">
-                        <div class="col-6">
-                            <a class="btn btn-lg btn-warning btn-block" href="/">Voltar</a>
-                        </div>
-                    </div>
-                </div>
+    <div class="row">        
+        <div class="card-body">
+            <div id="título-card-chamados" class="card-body row" style="font-weight: bold; padding-right: 1em; margin-left: -19px">
+                <p class="card-text col-2">ID</p>
+                <p class="card-text col-3">Título</p>
+                <p class="card-text col-3">Status</p>
+                <p class="card-text col-3">Responsável</p>
             </div>
+
+            {{#data}}
+            <div class="row descricao-chamados">
+                <p class="card-text col-2">{{id}}</p>
+                <p class="card-text col-3">{{titulo}}</p>
+                <p class="card-text col-3">{{status}}</p>
+                <p class="card-text col-3">Admin</p>
+                <a id="botao-editar-chamado" href="consultaChamados/{{id}}">
+                <img src="/img/editar_chamado.png" width="20" height="20">
+                </a>
+            </div>
+            {{/data}}
+            
         </div>
     </div>
 </div>

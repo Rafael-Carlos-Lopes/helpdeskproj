@@ -158,6 +158,33 @@ app.post("/controllerCriarUsuario",urlencodeParser,function(req,res){
             res.render('controllerCriarUsuario');
     });  
 });
+
+//tela de configurações
+app.get("/configuracoes", function(req, res){
+    if(req.session.matricula)
+        res.render('configuracoes');
+    else
+        res.redirect('/');
+});
+
+//função para alterar senha
+app.post("/controllerAlterarSenha",urlencodeParser,function(req,res){
+    sql.getConnection(function(err, connection){
+        if(req.body.novaSenha == req.body.senhaConfirmada){
+            connection.query("select * from usuarios where matricula = ? and senha = ?",[req.session.matricula, req.body.senha], function(err, results, fields){
+                if(results[0] != null){
+                    connection.query("update usuarios set senha = ? where matricula = ?",[req.body.novaSenha, req.session.matricula], function(err, results, fields){
+                        res.render('configuracoes', {textoAviso: "Senha alterada com sucesso."});
+                    });
+                }
+                else
+                    res.render('configuracoes', {textoAviso: "Senha inválida."});
+            });
+        }
+        else
+            res.render('configuracoes', {textoAviso: "Senha confirmada não é igual à nova senha."});
+    });  
+});
 //#endregion
 
 //#region provavelmente deletar
@@ -181,14 +208,6 @@ app.post("/controllerUpdate",urlencodeParser,function(req,res){
         connection.query("update user set name=?,age=? where id=?",[req.body.name,req.body.age,req.body.id]);
             res.render('controllerUpdate');
     });     
-});
-
-//tela de configurações
-app.get("/configuracoes", function(req, res){
-    if(req.session.matricula)
-        res.render('configuracoes');
-    else
-        res.redirect('/');
 });
 //#endregion
 

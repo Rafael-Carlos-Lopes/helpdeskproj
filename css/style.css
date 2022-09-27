@@ -1,49 +1,54 @@
-h1{color:darkred; width: 100%; text-align: center;}
+h1 {
+    color: darkred;
+    width: 100%;
+    text-align: center;
+}
 
-a{color:#333;}
-
-table{width: 100%; text-align: center;}
-table td{width: 25%;}
-table tr:first-child{background: #333; color: #fff; font-weight: bold; padding: 15px 0;}
+a {
+    color: #333;
+}
 
 .card-login {
-padding: 30px 0 0 0;
-width: 350px;
-margin: 0 auto;
+    padding: 30px 0 0 0;
+    width: 350px;
+    margin: 0 auto;
 }
 
 .card-home {
-padding: 30px 0 0 0;
-width: 100%;
-margin: 0 auto;
+    padding: 30px 0 0 0;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .card-abrir-chamado {
-padding: 30px 0 0 0;
-width: 100%;
-margin: 0 auto;
+    padding: 30px 0 0 0;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .card-consultar-chamado {
-padding: 30px 0 0 0;
-width: 100%;
-margin: 0 auto;
+    width: 100%;
+    margin: 0 auto;
 }
 
-.detalhes-chamado{
+.detalhes-chamado {
     z-index: 999;
 }
 
-div .detalhes-chamado:hover{
-background-color: rgba(255, 0, 0, 0.2)!important;
-cursor: pointer;
+div .detalhes-chamado:hover {
+    background-color: rgba(255, 0, 0, 0.2) !important;
+    cursor: pointer;
 }
 
-.opcaoCriarUsuario{
+.opcaoCriarUsuario {
     display: none !important;
 }
 
-.resultado{display: none; float:left; width: 70%; border: 2px solid #00ff0d; background: #d8ffd5; text-align:center; padding: 15px; margin: 20px 15% 10px 15%;}
+.resultado {
+    display: none;
+    text-align: center;
+    color: #007bff;
+}
 
 .right {
     float: right;
@@ -59,37 +64,62 @@ cursor: pointer;
     color: #fff;
 }
 
-#sticky-sidebar .nav-link{
+#sticky-sidebar .nav-link {
     padding: 1.5rem 1rem;
-    color:white;
+    color: white;
     line-height: 2;
 }
 
-#sticky-sidebar a{
-    color:white;
+#sticky-sidebar a {
+    color: white;
 }
 
-.nav-topo{
+.nav-topo {
     position: fixed !important;
     width: 100%;
     z-index: 10000;
-    margin-top: -5em;
+    margin-top: -4.7em;
+    border-bottom: solid;
+    border-width: thin;
+    border-color: #f2fafe;
 }
 
-.conteudo-principal{
+.conteudo-principal {
     margin-top: 5em;
 }
 
-#main{
+#main {
     margin-left: 23%;
 }
 
-.menu-lateral{
+.menu-lateral {
     margin-top: 1em;
     margin-bottom: 1em;
 }
 
-.menu-lateral img{
+.menu-lateral img {
     margin-right: 1em;
     margin-left: 2em;
+}
+
+.botao-cria-chamado:hover {
+    background: #007bff !important;
+    color: white !important;
+}
+
+.descricao-chamados {
+    width: 100%;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 15px;
+    padding-top: 7px;
+    height: 2.5em;
+    border-color: #007bff;
+    color: #007bff;
+    margin-bottom: 1em;
+    margin-left: 0px !important;
+}
+
+form-control::placeholder {
+    color: red !important;
 }
