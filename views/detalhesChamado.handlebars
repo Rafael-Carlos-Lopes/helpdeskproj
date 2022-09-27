@@ -9,38 +9,52 @@
 
                             <form name='formAbrirChamado' id="formAbrirChamado" action='controllerAbrirChamado'
                                 method='post'>
+                            {{#data}}
                                 <div class="form-group row">
-                                    <label class="col-2">Título</label>
-                                    <input name="titulo" id="titulo" type="text" class="form-control col-9"
-                                        placeholder="Título" style="border-radius: 15px; color: #007bff;">
+                                    <label class="col-2">ID</label>
+                                    <input name="titulo" id="titulo" type="text" disabled class="form-control col-9"
+                                        placeholder="{{id}}" style="border-radius: 15px; color: #007bff;">
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-2">Categoria</label>
-                                    <select name="categoria" id="categoria" class="form-control col-9" style="border-radius: 15px; color: #007bff;">
-                                        <option>Criação Usuários</option>
-                                        <option>Impressora</option>
-                                        <option>Hardware</option>
-                                        <option>Software</option>
-                                        <option>Rede</option>
+                                    <label class="col-2">Título</label>
+                                    <input name="titulo" id="titulo" type="text" disabled class="form-control col-9"
+                                        placeholder="{{titulo}}" style="border-radius: 15px; color: #007bff;">
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-2">Responsável</label>
+                                    <select name="responsavel" id="responsavel" disabled class="form-control col-9"
+                                        style="border-radius: 15px; color: #007bff;">
+                                        <option>Admin</option>
                                     </select>
                                 </div>
 
-                                <div class="form-group">
-                                    <label> Descrição</label>
-                                    <textarea name="descricao" id="descricao" class="form-control" rows="3" style="border-radius: 15px; color: #007bff;"></textarea>
+                                <div class="form-group row">
+                                    <label class="col-2">Status</label>
+                                    <select name="status" id="status" disabled class="form-control col-9"
+                                        style="border-radius: 15px; color: #007bff;">
+                                        <option>{{status}}</option>
+                                    </select>
                                 </div>
+
+                                <div class="form-group row">
+                                    <label class="col-2">Matrícula</label>
+                                    <input name="matricula" id="matricula" disabled type="text" class="form-control col-9"
+                                        placeholder="{{idSolicitador}}" style="border-radius: 15px; color: #007bff;">
+                                </div>
+                            {{/data}}
 
                                 <div class="row">
                                     <div class="col-2">
                                         <a class="btn btn-sm btn-block botao-cria-chamado" href="/"
-                                            style="background: white; border-radius: 50px; line-height: 1; border-color: #007bff; color: #007bff;">Cancela</a>
+                                            style="background: white; border-radius: 50px; line-height: 1; border-color: #007bff; color: #007bff;">Voltar</a>
                                     </div>
-                                    <div class="col-2">
+                                    {{!-- <div class="col-2">
                                         <button class="btn btn-sm btn-block botao-cria-chamado"
                                             style="background: white; border-radius: 50px; line-height: 1; border-color: #007bff; color: #007bff;"
                                             type="submit" value="add">Confirma</button>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </form>
 
@@ -52,3 +66,4 @@
             </div>
         </div>
     </div>
+</div>
