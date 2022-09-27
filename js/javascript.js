@@ -48,6 +48,10 @@ $(function () {
         event.preventDefault();
     });
 
+    $("#botao-editar-chamado").on("click", function (event){
+        var teste = this[0].value;
+    });
+
     var tipo = $('#tipo')[0];
 
     if(tipo != undefined){
