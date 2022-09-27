@@ -106,7 +106,7 @@ app.get("/consultaChamados/:id?",function(req, res){
         else{
             sql.getConnection(function(err, connection){
                 connection.query("select * from chamados where id = ?",[req.params.id], function(err, results, fields){
-                    res.render('consultaChamados', {data:results});
+                    res.render('detalhesChamado', {data:results});
                 });  
             });    
         }
