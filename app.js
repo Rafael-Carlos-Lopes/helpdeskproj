@@ -57,7 +57,7 @@ app.use('/img', express.static('img'));
 //Primeira tela
 app.get("/", function(req, res){
     if(req.session.matricula)
-        res.render('home', {tipo:req.session.tipo});
+        res.render('home', {tipo:req.session.tipo, quantChamados:req.session.quantChamados});
     else
         res.render('login');
 });
@@ -70,7 +70,10 @@ app.post("/",(req,res) => {
                 req.session.matricula = results[0].matricula;
                 req.session.tipo = results[0].tipo;
                 console.log(req.session.tipo);
-                res.render('home', {tipo:req.session.tipo});
+                connection.query("select count(*) as quantChamados from chamados where idSolicitador = ?",[req.session.matricula],function(err,results,fields){
+                    req.session.quantChamados = results[0].quantChamados;
+                    res.render('home', {tipo:req.session.tipo, quantChamados:req.session.quantChamados});
+                });
             }
             else
                 res.render('login', {textoErro: "Usuário ou senha inválido(s)."});
