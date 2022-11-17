@@ -25,9 +25,9 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="btn btn-dark dropdown-item" href="/"><img src="/img/house-fill.svg" width="20" height="20" align="top"> Home</a>
-                <a class="btn btn-dark dropdown-item" href="consultaChamados"><img src="/img/headset.svg" width="20" height="20" align="top"> Chamados</a>
+                <a class="btn btn-dark dropdown-item" href="/consultaChamados"><img src="/img/headset.svg" width="20" height="20" align="top"> Chamados</a>
                 <a class="btn btn-dark dropdown-item" href="/"><img src="/img/gear-fill.svg" width="20" height="20" align="top"> Configurações</a>
-                <a class="btn btn-dark dropdown-item" onclick="checker()" href="logout"><img src="/img/x-octagon-fill.svg" width="20" height="20" align="top"> Logout</a>
+                <a class="btn btn-dark dropdown-item" onclick="checker()" href="/logout"><img src="/img/x-octagon-fill.svg" width="20" height="20" align="top"> Logout</a>
             </div>
         </div>
     </nav>
@@ -48,13 +48,13 @@
                                 class="dropdown-toggle">Chamados</a>
                             <ul class="collapse list-unstyled" id="chamadosSubmenu">
                                 <li>
-                                    <a href="consultaChamados">Consultar</a>
+                                    <a href="/consultaChamados">Consultar</a>
                                 </li>
                                 <li>
-                                    <a href="chamados">Novo</a>
+                                    <a href="/chamados">Novo</a>
                                 </li>
                                 <li id="opcaoCriarUsuario">
-                                    <a href="criarUsuario">Criar Usuário</a>
+                                    <a href="/criarUsuario">Criar Usuário</a>
                                 </li>
                             </ul>
                         </li>
@@ -68,7 +68,7 @@
                                 class="dropdown-toggle">Configurações</a>
                             <ul class="collapse list-unstyled" id="configSubmenu">
                                 <li>
-                                    <a href="configuracoes">Alterar Senha</a>
+                                    <a href="/configuracoes">Alterar Senha</a>
                                 </li>
                             </ul>
                         </li>
@@ -82,7 +82,7 @@
                                 class="dropdown-toggle">Logout</a>
                             <ul class="collapse list-unstyled" id="logoutSubmenu">
                                 <li>
-                                    <a onclick="checker()" href="logout">Sair</a>
+                                    <a onclick="checker()" href="/logout">Sair</a>
                                 </li>
                             </ul>
                         </li>
