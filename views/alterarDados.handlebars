@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row">
+
+        <div class="card-abrir-chamado">
+            <div class="card" style="border-radius: 15px; box-shadow: 5px 10px 10px rgb(1 0 0 / 0.3);">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+
+                            <form name='formAlterarDados' id="formAlterarDados" action='/controllerAlterarDados'
+                                method='post'>
+                            {{#data}}
+                                <div class="form-group row">
+                                    <label class="col-2">Nome</label>
+                                    <input name="nome" id="nome" type="text" class="form-control col-9"
+                                        value="{{nome}}" style="border-radius: 15px; color: #007bff;">
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-2">Email</label>
+                                    <input name="email" id="email" type="text" class="form-control col-9"
+                                        value="{{email}}" style="border-radius: 15px; color: #007bff;">
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-2">Telefone</label>
+                                    <input name="telefone" id="telefone" type="text" class="form-control col-9"
+                                        value="{{telefone}}" style="border-radius: 15px; color: #007bff;">
+                                </div>
+
+                            {{/data}}
+
+                                <div class="row">
+                                    <div class="col-2">
+                                        <a class="btn btn-sm btn-block botao-cria-chamado" href="/"
+                                            style="background: white; border-radius: 50px; line-height: 1; border-color: #007bff; color: #007bff;">Voltar</a>
+                                    </div>
+                                    <div class="col-2">
+                                        <button class="btn btn-sm btn-block botao-cria-chamado"
+                                            style="background: white; border-radius: 50px; line-height: 1; border-color: #007bff; color: #007bff;"
+                                            type="submit" value="add">Confirma</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div class="resultado">Dados alterados com sucesso</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

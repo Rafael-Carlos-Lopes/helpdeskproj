@@ -210,6 +210,27 @@ app.post("/controllerEditarChamado",urlencodeParser,function(req,res){
             res.render('controllerEditarChamado');
     });  
 });
+
+//tela de alterar dados pessoais
+app.get("/alterarDados", function(req, res){
+    if(req.session.matricula){
+        sql.getConnection(function(err, connection){
+            connection.query("select * from usuarios where matricula = ?",[req.session.matricula], function(err, results, fields){
+                res.render('alterarDados',{data: results});
+            });
+        });    
+    }
+    else
+        res.redirect('/');
+});
+
+//função para alterar dados pessoais
+app.post("/controllerAlterarDados",urlencodeParser,function(req,res){
+    sql.getConnection(function(err, connection){
+            connection.query("update usuarios set nome = ?, email = ?, telefone = ? where matricula = ?",[req.body.nome,req.body.email,req.body.telefone,req.session.matricula]);
+            res.render('controllerAlterarDados');
+    });  
+});
 //#endregion
 
 //#region provavelmente deletar
