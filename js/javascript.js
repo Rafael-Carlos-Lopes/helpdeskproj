@@ -48,6 +48,23 @@ $(function () {
         event.preventDefault();
     });
 
+    $("#formEditarChamado").on("submit", function (event) {
+        var idchamado = this[0].value;
+        var titulo = this[1].value;
+        var status = this[3].value;
+        var descricao = this[5].value;
+        $.post("/controllerEditarChamado", {
+            titulo: String(titulo),
+            status: String(status),
+            descricao: String(descricao),
+            idchamado: String(idchamado),
+            success: function () {
+                $('.resultado').show();
+            }
+        });
+        event.preventDefault();
+    });
+
     $("#botao-editar-chamado").on("click", function (event){
         var teste = this[0].value;
     });

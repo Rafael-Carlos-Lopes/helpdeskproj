@@ -7,24 +7,24 @@
                     <div class="row">
                         <div class="col">
 
-                            <form name='formAbrirChamado' id="formAbrirChamado" action='controllerAbrirChamado'
+                            <form name='formEditarChamado' id="formEditarChamado" action='/controllerEditarChamado'
                                 method='post'>
                             {{#data}}
                                 <div class="form-group row">
                                     <label class="col-2">ID</label>
-                                    <input name="titulo" id="titulo" type="text" disabled class="form-control col-9"
-                                        placeholder="{{id}}" style="border-radius: 15px; color: #007bff;">
+                                    <input name="idchamado" id="idchamado" readonly="true" type="text" class="form-control col-9"
+                                        value="{{id}}" style="border-radius: 15px; color: #007bff;">
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-2">Título</label>
-                                    <input name="titulo" id="titulo" type="text" disabled class="form-control col-9"
-                                        placeholder="{{titulo}}" style="border-radius: 15px; color: #007bff;">
+                                    <input name="titulo" id="titulo" type="text" class="form-control col-9"
+                                        value="{{titulo}}" style="border-radius: 15px; color: #007bff;">
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-2">Responsável</label>
-                                    <select name="responsavel" id="responsavel" disabled class="form-control col-9"
+                                    <select name="responsavel" id="responsavel" class="form-control col-9"
                                         style="border-radius: 15px; color: #007bff;">
                                         <option>Admin</option>
                                     </select>
@@ -32,21 +32,23 @@
 
                                 <div class="form-group row">
                                     <label class="col-2">Status</label>
-                                    <select name="status" id="status" disabled class="form-control col-9"
+                                    <select name="status" id="status" class="form-control col-9"
                                         style="border-radius: 15px; color: #007bff;">
-                                        <option>{{status}}</option>
+                                        <option value="Espera">Espera</option>
+                                        <option value="Em Execução">Em execução</option>
+                                        <option value="Concluído">Concluído</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-2">Matrícula</label>
-                                    <input name="matricula" id="matricula" disabled type="text" class="form-control col-9"
-                                        placeholder="{{idSolicitador}}" style="border-radius: 15px; color: #007bff;">
+                                    <input name="matricula" id="matricula" type="text" class="form-control col-9"
+                                        placeholder="{{idSolicitador}}" disabled style="border-radius: 15px; color: #007bff;">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Descrição</label>
-                                    <textarea name="descricao" id="descricao" class="form-control" disabled rows="3"
+                                    <textarea name="descricao" id="descricao" class="form-control" rows="3"
                                         style="border-radius: 15px; color: #007bff;">{{descricao}}</textarea>
                                 </div>
                             {{/data}}
@@ -56,15 +58,15 @@
                                         <a class="btn btn-sm btn-block botao-cria-chamado" href="/consultaChamados"
                                             style="background: white; border-radius: 50px; line-height: 1; border-color: #007bff; color: #007bff;">Voltar</a>
                                     </div>
-                                    {{!-- <div class="col-2">
+                                    <div class="col-2">
                                         <button class="btn btn-sm btn-block botao-cria-chamado"
                                             style="background: white; border-radius: 50px; line-height: 1; border-color: #007bff; color: #007bff;"
                                             type="submit" value="add">Confirma</button>
-                                    </div> --}}
+                                    </div>
                                 </div>
                             </form>
 
-                            <div class="resultado">Chamado aberto com sucesso</div>
+                            <div class="resultado">Chamado editado com sucesso</div>
 
                         </div>
                     </div>
