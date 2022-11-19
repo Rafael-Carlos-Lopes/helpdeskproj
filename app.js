@@ -106,9 +106,17 @@ app.get("/consultaChamados/:id?",function(req, res){
     if(req.session.matricula){
         if(!req.params.id){
             sql.getConnection(function(err, connection){
-                connection.query("select * from chamados order by id asc", function(err, results, fields){
-                    res.render('consultaChamados', {data:results});
-                });   
+                if(req.session.tipo == 'administrador'){
+                    connection.query("select * from chamados order by id asc", function(err, results, fields){
+                        res.render('consultaChamados', {data:results});
+                    });
+                }
+
+                else{
+                    connection.query("select * from chamados where idSolicitador = ?",[req.session.matricula], function(err, results, fields){
+                        res.render('consultaChamados', {data:results});
+                    });
+                }
             });    
         }
 
@@ -192,6 +200,14 @@ app.post("/controllerAlterarSenha",urlencodeParser,function(req,res){
         }
         else
             res.render('configuracoes', {textoAviso: "Senha confirmada não é igual à nova senha."});
+    });  
+});
+
+//função para editar chamados
+app.post("/controllerEditarChamado",urlencodeParser,function(req,res){
+    sql.getConnection(function(err, connection){
+            connection.query("update chamados set titulo = ?, status =?, descricao = ? where id = ?",[req.body.titulo,req.body.status,req.body.descricao,req.body.idchamado]);
+            res.render('controllerEditarChamado');
     });  
 });
 //#endregion
