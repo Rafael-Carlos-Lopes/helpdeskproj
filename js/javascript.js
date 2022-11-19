@@ -65,6 +65,21 @@ $(function () {
         event.preventDefault();
     });
 
+    $("#formAlterarDados").on("submit", function (event) {
+        var nome = this[0].value;
+        var email = this[1].value;
+        var telefone = this[2].value;
+        $.post("/controllerAlterarDados", {
+            nome: String(nome),
+            email: String(email),
+            telefone: String(telefone),
+                success: function () {
+                $('.resultado').show();
+            }
+        });
+        event.preventDefault();
+    });
+
     $("#botao-editar-chamado").on("click", function (event){
         var teste = this[0].value;
     });
