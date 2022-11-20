@@ -96,7 +96,7 @@ app.get('/logout',(req,res) => {
 //tela de abrir novo chamado
 app.get("/chamados", function(req, res){
     if(req.session.matricula)
-        res.render('chamados');
+        res.render('chamados', {tipo:req.session.tipo});
     else
         res.redirect('/');
 });
@@ -108,13 +108,13 @@ app.get("/consultaChamados/:id?",function(req, res){
             sql.getConnection(function(err, connection){
                 if(req.session.tipo == 'administrador'){
                     connection.query("select * from chamados order by id asc", function(err, results, fields){
-                        res.render('consultaChamados', {data:results});
+                        res.render('consultaChamados', {data:results, tipo:req.session.tipo});
                     });
                 }
 
                 else{
                     connection.query("select * from chamados where idSolicitador = ?",[req.session.matricula], function(err, results, fields){
-                        res.render('consultaChamados', {data:results});
+                        res.render('consultaChamados', {data:results, tipo:req.session.tipo});
                     });
                 }
             });    
@@ -123,7 +123,7 @@ app.get("/consultaChamados/:id?",function(req, res){
         else{
             sql.getConnection(function(err, connection){
                 connection.query("select * from chamados where id = ?",[req.params.id], function(err, results, fields){
-                    res.render('detalhesChamado', {data:results});
+                    res.render('detalhesChamado', {data:results, tipo:req.session.tipo});
                 });  
             });    
         }
@@ -159,7 +159,7 @@ app.post("/controllerAbrirChamado",urlencodeParser,function(req,res){
 app.get("/criarUsuario", function(req, res){
     if(req.session.matricula){
         if(req.session.tipo == "administrador")
-            res.render('criarUsuario');
+            res.render('criarUsuario', {tipo:req.session.tipo});
         else
             res.redirect('/');
     }
@@ -171,7 +171,6 @@ app.get("/criarUsuario", function(req, res){
 app.post("/controllerCriarUsuario",urlencodeParser,function(req,res){
     sql.getConnection(function(err, connection){
             connection.query("insert into usuarios (matricula, senha, tipo, nome, cpf, email, telefone) values (?,?,?,?,?,?,?)",[req.body.matricula,req.body.matricula,"aluno",req.body.nome,req.body.cpf,req.body.email,req.body.telefone]);
-
             res.render('controllerCriarUsuario');
     });  
 });
@@ -179,7 +178,7 @@ app.post("/controllerCriarUsuario",urlencodeParser,function(req,res){
 //tela de configurações
 app.get("/configuracoes", function(req, res){
     if(req.session.matricula)
-        res.render('configuracoes');
+        res.render('configuracoes', {tipo:req.session.tipo});
     else
         res.redirect('/');
 });
@@ -216,7 +215,7 @@ app.get("/alterarDados", function(req, res){
     if(req.session.matricula){
         sql.getConnection(function(err, connection){
             connection.query("select * from usuarios where matricula = ?",[req.session.matricula], function(err, results, fields){
-                res.render('alterarDados',{data: results});
+                res.render('alterarDados',{data: results, tipo:req.session.tipo});
             });
         });    
     }
